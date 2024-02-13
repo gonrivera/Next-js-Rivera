@@ -1,6 +1,6 @@
 'use client'
 
-import Boton from "./components/ui/Boton"
+import Boton from "@/components/ui/Boton"
 import { useRouter } from "next/navigation"
 
 export default function NotFound (){
