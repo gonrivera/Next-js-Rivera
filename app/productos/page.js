@@ -5,7 +5,7 @@ import React from 'react'
 
 const Productos = ({params}) => {
   const {categoria}= params
-  const items = categoria ==='all'
+  const items = categoria ==='todos'
                 ? mockData
                 : mockData.filter(item=> item.type === categoria)
   

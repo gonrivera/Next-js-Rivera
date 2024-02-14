@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 const links = [
     {label: "Todos", href: "/productos/todos",},
     {label: "Iphone", href: "/productos/iphone",},
-    {label: "Imac", href: "/productos/imac",},
+    {label: "Mac", href: "/productos/mac",},
     {label: "Ipad", href: "/productos/ipad",},
 ]
 

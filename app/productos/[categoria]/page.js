@@ -1,26 +1,22 @@
-import CategoriesMenu from "@components/products/CategoriesMenu"
-import ProductsList from "@/components/products/ProductsList"
+import { NextResponse } from "next/server";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import {db} from "@/app/firebase/config"
 
 
-export async function generateMetadata ({params,searchParams},parent){
-    return {
-        title: `Icompr - ${params.categoria}`
-    }
-}
 
-const Productos = ({params}) => {
+export async function funcion GET ({params,searchParams},parent){
+  
     const {categoria} = params
+    const productosRef= collection (db, "productos")
 
-    return(
-        <main className="container m-auto">
-            <h2 className="text-xxl my-10 border-b pb-4" > Productos</h2>
+    const q = categoria === 'todos'
+    ? productosRef
+    : query(productosRef,where('type', '===', categoria))
 
-            <div className="flex gap-10">
-                <CategoriesMenu/>
-                <ProductsList cateogria={categoria}/>
-            </div>
-        </main>
-    )
+    const querySnapshot = await getDocs(q)
+
+    const docs = querySnapshot.docs.map(doc => doc.data())
+
+    return NextResponse.json(docs)
 }
-
-export default Productos
+ 
